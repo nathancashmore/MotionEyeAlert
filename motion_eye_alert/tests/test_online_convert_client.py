@@ -1,13 +1,13 @@
 import unittest
 
-import online_convert
-from online_convert.custom_exceptions import TooManyRequests
-from online_convert.online_convert_client import OnlineConvertClient
+import motion_eye_alert
+from motion_eye_alert.custom_exceptions import TooManyRequests
+from motion_eye_alert.online_convert_client import OnlineConvertClient
 
 
 class TestConvertClient(unittest.TestCase):
     def setUp(self):
-        self.client = online_convert.online_convert_client.OnlineConvertClient()
+        self.client = motion_eye_alert.online_convert_client.OnlineConvertClient()
 
     def test_success_call(self):
         test_file = "http://staticvoid.no-ip.info:9999/movie/1/download/integration-test/00-00-00.avi"
