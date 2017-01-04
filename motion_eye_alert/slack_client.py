@@ -6,6 +6,7 @@ import requests
 import config
 
 SLACK_WEBHOOK_URL = config.SLACK_WEBHOOK_URL
+MOTION_EYE_SERVER_URL = config.MOTION_EYE_SERVER_URL
 
 
 class SlackClient(object):
@@ -17,11 +18,11 @@ class SlackClient(object):
             "channel": channel,
             "attachments": [
                 {
-                    "fallback": "See http://staticvoid.no-ip.info:9999/ for the latest message",
+                    "fallback": "See " + MOTION_EYE_SERVER_URL +  "for the latest message",
                     "color": "#317CAD",
                     "pretext": "A bird has been seen !!",
-                    "author_name": "StaticVoid MotionEye",
-                    "author_link": "http://staticvoid.no-ip.info:9999/",
+                    "author_name": "MotionEye Camera",
+                    "author_link": MOTION_EYE_SERVER_URL,
                     "title": "Play the last known spotting....",
                     "title_link": movie_url,
                     "footer": "Converted by <http://www.online-convert.com/|Online-Convert.com>",
