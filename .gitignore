@@ -1,4 +1,4 @@
-
+build
 .cache/
 .idea/
 motion_eye_alert/tests/__pycache__/
