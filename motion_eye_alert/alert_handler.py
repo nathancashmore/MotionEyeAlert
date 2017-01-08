@@ -13,7 +13,7 @@ class AlertHandler(object):
     slack_client = SlackClient()
 
     def alert(self, camera_media_path):
-        file_source = MOTION_EYE_SERVER_URL + camera_media_path
+        file_source = MOTION_EYE_SERVER_URL + camera_media_path[0]
         converted_file = self.online_convert_client.convertFile(file_source)
         self.slack_client.notify(SLACK_CHANNEL, converted_file)
 
