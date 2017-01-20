@@ -11,5 +11,6 @@ filepath=`find . -name  *.avi | xargs ls -t | head -1`
 filesource="/movie/$2/download/$filepath"
 
 cd ${runDir}
-echo "Alert request for filesource : $filesource"
+echo "Alert request for filesource : $filesource in 30 seconds time once we have enough footage"
+sleep 30s
 python motion_eye_alert/alert_handler.py ${filesource}

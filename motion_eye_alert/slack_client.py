@@ -20,7 +20,7 @@ class SlackClient(object):
                 {
                     "fallback": "See " + MOTION_EYE_SERVER_URL +  "for the latest message",
                     "color": "#317CAD",
-                    "pretext": "A bird has been seen !!",
+                    "pretext": "A bird has been seen on the <" + MOTION_EYE_SERVER_URL + "|MotionEye Camera>",
                     "author_name": "MotionEye Camera",
                     "author_link": MOTION_EYE_SERVER_URL,
                     "title": "Play the last known spotting....",
