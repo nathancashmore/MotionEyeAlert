@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 
 # Usage:
-# ./alert.sh <name> <id>
-# e.g. ./alert.sh BirdCam 1
+# ./alert.sh <id> <name>
+# e.g. ./alert.sh 1 MotionCam
 
 runDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd /var/lib/motioneye/$1
-filepath=`find . -name  *.avi | xargs ls -t | head -1`
-filesource="/movie/$2/download/$filepath"
-
 cd ${runDir}
-echo "Alert request for filesource : $filesource in 30 seconds time once we have enough footage"
-sleep 30s
-python motion_eye_alert/alert_handler.py ${filesource}
+echo "Alert request for motion on camera $2 with the id $1"
+sleep 2s
+python motion_eye_alert/alert_handler.py $1 $2

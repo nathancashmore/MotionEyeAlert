@@ -2,31 +2,27 @@
 # slack_client.py
 
 import requests
+import os
 
-import config
-
-SLACK_WEBHOOK_URL = config.SLACK_WEBHOOK_URL
-MOTION_EYE_SERVER_URL = config.MOTION_EYE_SERVER_URL
+SLACK_WEBHOOK_URL = os.environ.get('SLACK_WEBHOOK_URL')
+SLACK_CHANNEL = os.environ.get('SLACK_CHANNEL')
 
 
 class SlackClient(object):
     @staticmethod
-    def notify(channel, movie_url):
+    def notify(server_url, snapshot_url, camera_name):
         """Make a REST call to Slack webhook with an associated movie url to be included in message"""
 
         payload = {
-            "channel": channel,
+            "channel": SLACK_CHANNEL,
             "attachments": [
                 {
-                    "fallback": "See " + MOTION_EYE_SERVER_URL +  "for the latest message",
+                    "fallback": "See " + server_url + "for the latest message",
                     "color": "#317CAD",
-                    "pretext": "A bird has been seen on the <" + MOTION_EYE_SERVER_URL + "|MotionEye Camera>",
-                    "author_name": "MotionEye Camera",
-                    "author_link": MOTION_EYE_SERVER_URL,
-                    "title": "Play the last known spotting....",
-                    "title_link": movie_url,
-                    "footer": "Converted by <http://www.online-convert.com/|Online-Convert.com>",
-                    "footer_icon": "http://cdn.online-convert.com/images/logo_meta.png"
+                    "pretext": "Something has been seen on the <" + server_url + "|MotionEye Camera>",
+                    "author_name": camera_name,
+                    "author_link": server_url,
+                    "image_url": snapshot_url
                 }
             ]
         }

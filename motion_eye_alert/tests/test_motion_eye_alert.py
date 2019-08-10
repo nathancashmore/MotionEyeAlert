@@ -1,7 +1,6 @@
 import unittest
 
 import motion_eye_alert
-import motion_eye_alert.config
 from motion_eye_alert.alert_handler import AlertHandler
 
 
@@ -10,8 +9,7 @@ class TestAlertHandler(unittest.TestCase):
         self.client = motion_eye_alert.alert_handler.AlertHandler()
 
     def test_success_call(self):
-        test_file = ['/movie/1/download/integration-test/00-00-00.avi']
-        self.client.alert(test_file)
+        self.client.alert('1', 'Motion Cam')
 
 
 if __name__ == '__main__':

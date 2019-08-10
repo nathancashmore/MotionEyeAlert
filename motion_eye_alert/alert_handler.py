@@ -1,22 +1,20 @@
 import sys
+import os
 
-import config
-from online_convert_client import OnlineConvertClient
 from slack_client import SlackClient
 
-SLACK_CHANNEL = config.SLACK_CHANNEL
-MOTION_EYE_SERVER_URL = config.MOTION_EYE_SERVER_URL
+MOTION_EYE_SERVER_URL = os.environ.get('MOTION_EYE_SERVER_URL')
+MOTION_EYE_USER = os.environ.get('MOTION_EYE_USER')
+MOTION_EYE_SIGNATURE = os.environ.get('MOTION_EYE_SIGNATURE')
 
 
 class AlertHandler(object):
-    online_convert_client = OnlineConvertClient()
     slack_client = SlackClient()
 
-    def alert(self, camera_media_path):
-        file_source = MOTION_EYE_SERVER_URL + camera_media_path[0]
-        converted_file = self.online_convert_client.convertFile(file_source)
-        self.slack_client.notify(SLACK_CHANNEL, converted_file)
+    def alert(self, camera_id, name):
+        snapshot_url = MOTION_EYE_SERVER_URL + "/picture/" + camera_id + "/current/" + '?_username=admin&_signature=' + MOTION_EYE_SIGNATURE
+        self.slack_client.notify(MOTION_EYE_SERVER_URL, snapshot_url, name)
 
 
 if __name__ == '__main__':
-    AlertHandler().alert(sys.argv[1:])
+    AlertHandler().alert(sys.argv[1], sys.argv[2])
