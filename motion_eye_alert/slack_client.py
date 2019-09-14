@@ -17,7 +17,7 @@ class SlackClient(object):
             "channel": SLACK_CHANNEL,
             "attachments": [
                 {
-                    "fallback": "See " + server_url + "for the latest message",
+                    "fallback": "See " + server_url + " for the latest message",
                     "color": "#317CAD",
                     "pretext": "Something has been seen on the <" + server_url + "|MotionEye Camera>",
                     "author_name": camera_name,
